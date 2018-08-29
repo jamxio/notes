@@ -10,4 +10,11 @@ var_dump(substr('啊波次的额佛',2,3));
 var_dump(substr('啊波次的额佛',3,3));
 print(mb_substr('啊波次的额佛',2,3).PHP_EOL);
 print_r(str_pad('我',5,'-').PHP_EOL);
-print(str_pad('wo',5,'-'));
+print str_pad('wo',5,'-').PHP_EOL;
+
+//solution
+$mbStrPad = function ($input,$pad_length,$pad_string='*'){
+    return str_repeat($pad_string,$pad_length-mb_strlen($input)).$input;
+};
+echo $mbStrPad('我','5','-').PHP_EOL;
+echo $mbStrPad('wo','5','-');
