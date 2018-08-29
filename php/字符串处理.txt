@@ -1,5 +1,0 @@
-substr();和strlen();对utf的每个字符的长度都并不是1
-
-所以要用mb_substr();和mb_strlen();
-
-可是str_pad没有mb_*，应该怎么办
