@@ -82,3 +82,18 @@ $test = ['target'=>'origin'];
 print_r($test);
 print_r(changeArr($test));
 print_r($test);
+/**
+ * output
+Array
+(
+[target] => origin
+)
+Array
+(
+[target] => modify
+)
+Array
+(
+[target] => origin
+)
+ */
