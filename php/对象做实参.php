@@ -82,8 +82,8 @@ $test = ['target'=>'origin'];
 print_r($test);
 print_r(changeArr($test));
 print_r($test);
-/**
- * output
+?>
+ <pre>
     Array
     (
     [target] => origin
@@ -96,4 +96,4 @@ print_r($test);
     (
     [target] => origin
     )
- **/
+  </pre>
