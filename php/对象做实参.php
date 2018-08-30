@@ -10,7 +10,7 @@
 /**
  * hideMyInfo的时候，将user()的原始对象修改了
  * @see a::hideMyInfo()
- * /
+ **/
 /**
  * 数组却不会
  * @see changeArr()
@@ -84,16 +84,16 @@ print_r(changeArr($test));
 print_r($test);
 /**
  * output
-Array
-(
-[target] => origin
-)
-Array
-(
-[target] => modify
-)
-Array
-(
-[target] => origin
-)
- */
+    Array
+    (
+    [target] => origin
+    )
+    Array
+    (
+    [target] => modify
+    )
+    Array
+    (
+    [target] => origin
+    )
+ **/
