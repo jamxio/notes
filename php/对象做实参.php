@@ -93,8 +93,8 @@ $objB = new b();
 print_r($objB);
 print_r(changeObj($objB));
 var_dump($objB);//对象和资源类型占用内存大，所以传句柄引用？
-/**
- * output
+?>
+ <pre>
     Array
     (
     [target] => origin
@@ -107,4 +107,4 @@ var_dump($objB);//对象和资源类型占用内存大，所以传句柄引用�
     (
     [target] => origin
     )
- **/
+  </pre>
