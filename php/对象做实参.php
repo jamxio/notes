@@ -81,7 +81,18 @@ function changeArr($arr)
 $test = ['target'=>'origin'];
 print_r($test);
 print_r(changeArr($test));
-print_r($test);
+var_dump($test);
+class b{
+    public $var=0;
+}
+function changeObj($obj){
+    $obj->var = 10;
+    return $obj;
+}
+$objB = new b();
+print_r($objB);
+print_r(changeObj($objB));
+var_dump($objB);//对象和资源类型占用内存大，所以传句柄引用？
 /**
  * output
     Array
