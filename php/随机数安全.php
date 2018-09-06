@@ -4,7 +4,7 @@
  * User: jamxio
  * Date: 2018/9/6
  * Time: 10:11
- * mt_rand()的安全？大部分随机数生成都是同种同序列的
+ * mt_rand()的安全？大部分语言随机数生成都是同种同序列的伪随机数吧
  * todo 为什么 mt_rand() 要被 random_int 替代？
  */
 mt_srand();//播种
