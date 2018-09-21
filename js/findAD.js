@@ -2,12 +2,20 @@ let n = 0;
 let m = 0;
 let monster;
 
-config(10000, 3000);
-randMonster();
+//config(1000000, 3000);
+//randMonster();
+config(10, 3);
+callMonster('AADADADADA');
 let attackHp = betterAttack();
 let defendHp = betterDefend();
-let maxHp = Math.max(attackHp,defendHp);
-console.log('小茗加了'+maxHp);
+let maxHp = Math.max(attackHp, defendHp);
+console.log('小茗加了' + maxHp);
+config(5, 1);
+callMonster('DADAA');
+attackHp = betterAttack();
+defendHp = betterDefend();
+maxHp = Math.max(attackHp, defendHp);
+console.log('小茗加了' + maxHp);
 
 function debug(str) {
     console.error(str);
@@ -66,15 +74,17 @@ function tryAttack(i) {
         return debug('小茗攻击位置错了，会浪费能量');
     }
     let hp = 0;
-    for (let j = i, restM = m; j < n; j++, hp++) {
+    for (let j = i, restM = m; j < n; j++) {
+        hp++;
         if (monster[j] === 'A') {
             restM--;
         }
-        if (restM === 0) {
+        //没能量，且怪兽也帮小茗
+        if (restM === 0 && monster[j + 1] !== 'D') {
             break;
         }
     }
-    back('从第' + (i + 1) + '个怪兽开始攻击，恢复了' + hp);
+    //back('从第' + (i + 1) + '个怪兽开始攻击，恢复了' + hp);
     return hp;
 }
 
@@ -88,15 +98,17 @@ function tryDefend(i) {
         return debug('小茗抵御位置错了，会浪费能量');
     }
     let hp = 0;
-    for (let j = i, restM = m; j < n; j++, hp++) {
+    for (let j = i, restM = m; j < n; j++) {
+        hp++;
         if (monster[j] === 'D') {
             restM--;
         }
-        if (restM === 0) {
+        //没能量且，下一个怪兽不是攻击状态
+        if (restM === 0 && monster[j + 1] !== 'A') {
             break;
         }
     }
-    back('抵御了从第' + (i + 1) + '个怪兽的攻击，恢复了' + hp);
+    //back('抵御了从第' + (i + 1) + '个怪兽的攻击，恢复了' + hp);
     return hp;
 }
 
