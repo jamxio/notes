@@ -4,7 +4,7 @@
 **粗体两边双星 `**`**  
 *斜体  
 *斜体两边单星 `*`*  
-[链接 用`[文字](url)`](http://www.baidu.com)  
+[链接 用`[文字](url)`](#Header-6)  
 `hello world 代码`  用``  
 ![图片](https://avatars1.githubusercontent.com/u/35069176?s=400&u=aa93d02fbddf4ec941640b1ddae4cd25199e8e73&v=4)  ![图片用 `![图片说明](url)`](https://avatars1.githubuserconteu/35069176?s=400&u=aa93d02fbddf4ec941640b1ddae4cd25199e8rte73=&v=4)
 
