@@ -33,28 +33,32 @@ if (($echoRes = system('openssl genrsa -out ' . $privateName . '.cs.pem 1024', $
 
 echo '密钥对生成成功，现在开始进行测试验证' . PHP_EOL;
 #载入密钥对配置文件验证密钥对的有效性
-$config = require $keyFilePrefix . '.php';
-#要求用户
-fwrite(STDOUT, '请输入您的测试字符串：');
-$m       = fgets(STDIN);
+$config  = require $keyFilePrefix . '.php';
 $randStr = function ($len) {
     $strs   = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm";
     $str    = '';
     $perLen = 10;
     for ($i = 0; $i < $len; $i += $perLen) {
         $perLen = min($len - $i, $perLen);
-        $str    .= substr(str_shuffle($strs), mt_rand(0, strlen($strs) - $perLen-1), $perLen);
+        $str    .= substr(str_shuffle($strs), mt_rand(0, strlen($strs) - $perLen - 1), $perLen);
     }
     return $str;
 };
-$m       = trim($m) ?: $randStr(128);
-var_dump($m);
-$cPublic = openssl_public_encrypt($m, $c, $config['public']);
+//1024/8 = 128。最长只能加密117，生成的都是128密文。
+#要求用户
+do {
+    fwrite(STDOUT, '请输入您的测试字符串(quit退出)：');
+    $m = fgets(STDIN);
+    $m = trim($m) ?: $randStr(117);
+    var_dump($m);
+    $cPublic = openssl_public_encrypt($m, $c, $config['public']);
 
-$decryptRes = openssl_private_decrypt($c, $dPrivate, $config['private']);
-echo '数据加密还原：' . PHP_EOL . '密文：' . $c . PHP_EOL . '解密：' . $dPrivate . PHP_EOL;
+    $decryptRes = openssl_private_decrypt($c, $dPrivate, $config['private']);
+    echo '数据加密还原：' . PHP_EOL . '密文：' . base64_decode($c) . PHP_EOL . '解密：' . $dPrivate . PHP_EOL;
 
-$cPrivate = openssl_private_encrypt($dPrivate, $s, $config['private']);
+    $cPrivate = openssl_private_encrypt($dPrivate, $s, $config['private']);
 
-$decryptRes = openssl_public_decrypt($s, $dPublic, $config['public']);
-echo '数据签名还原：' . PHP_EOL . '签名：' . $s . PHP_EOL . '原文：' . $dPublic . PHP_EOL;
+    $decryptRes = openssl_public_decrypt($s, $dPublic, $config['public']);
+    echo '数据签名还原：' . PHP_EOL . '签名：' . base64_encode($s) . PHP_EOL . '原文：' . $dPublic . PHP_EOL;
+} while ($m != 'quit');
+

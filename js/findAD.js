@@ -2,20 +2,25 @@ let n = 0;
 let m = 0;
 let monster;
 
-//config(1000000, 3000);
-//randMonster();
-config(10, 3);
+config(100000, 3000)
+let now, before, times = 100;
+while (0 <= times--) {
+    randMonster();
+    before = (new Date).getTime() / 1000;
+    Math.max(betterAttack(), betterDefend());
+    now = (new Date).getTime() / 1000;
+    console.log('false耗时===========', now - before);
+    before = (new Date).getTime() / 1000;
+    Math.max(betterAttack(true), betterDefend(true));
+    now = (new Date).getTime() / 1000, console.log('true耗时===========', now - before);
+}
+
+/*config(10, 3);
 callMonster('AADADADADA');
-let attackHp = betterAttack();
-let defendHp = betterDefend();
-let maxHp = Math.max(attackHp, defendHp);
-console.log('小茗加了' + maxHp);
+console.log('小茗加了' + Math.max(betterAttack(), betterDefend()));
 config(5, 1);
 callMonster('DADAA');
-attackHp = betterAttack();
-defendHp = betterDefend();
-maxHp = Math.max(attackHp, defendHp);
-console.log('小茗加了' + maxHp);
+console.log('小茗加了' + Math.max(betterAttack(), betterDefend()));*/
 
 function debug(str) {
     console.error(str);
@@ -37,6 +42,7 @@ function config(monster, xiaoming) {
     if (isNaN(newM) || newM <= 0 || newM >= newN) return debug('请输入正确的小茗能量，大于0，小于怪物总量');
     n = newN;
     m = newM;
+    console.info('小明能量：' + m);
 }
 
 /**
@@ -48,7 +54,7 @@ function callMonster(newMonster) {
     if (typeof newMonster !== "string" || newMonster.length != n || newMonster.search(/[^AD]/i) >= 0)
         return debug('请召唤正确的怪兽天团，' + n + '长度的AD自由组合');
     monster = newMonster;
-    back('数量' + n + '的怪兽天团：' + monster + '出现了');
+    //back('数量' + n + '的怪兽天团：' + (monster.length < 1000 ? monster : '……') + '出现了');
 }
 
 /**
@@ -116,13 +122,16 @@ function tryDefend(i) {
  *  最好的攻击收成
  * @returns {number}
  */
-function betterAttack() {
+function betterAttack(op = false) {
     let betterHp = 0;
     for (let i = 0; i <= n - m; i++) {
+        if (op && betterHp >= n - i+1) {
+            break;//剩下的不会有好收成了
+        }
         let tryHp = tryAttack(i);
         betterHp < tryHp && (betterHp = tryHp);
     }
-    back('最好的攻击收成是' + betterHp);
+    //back('最好的攻击收成是' + betterHp);
     return betterHp;
 }
 
@@ -130,12 +139,22 @@ function betterAttack() {
  * 最好的防御收成
  * @returns {number}
  */
-function betterDefend() {
+function betterDefend(op = false) {
     let betterHp = 0;
     for (let i = 0; i <= n - m; i++) {
+        if (op && betterHp >= n - i + 1) {
+            break;//剩下的不会有好收成了
+        }
         let tryHp = tryDefend(i);
         betterHp < tryHp && (betterHp = tryHp);
     }
-    back('最好的防御收成是' + betterHp);
+    // back('最好的防御收成是' + betterHp);
     return betterHp;
+}
+
+function aaa() {
+    let arr = [];
+    for (let i = 0; i < n; i++) {
+
+    }
 }
