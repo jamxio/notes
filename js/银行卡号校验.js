@@ -1,4 +1,4 @@
-let iniCard = '622262071002710206';
+let iniCard = '62243988000473804';
 
 let binCode = iniCard.substr(0, 6);
 
@@ -17,12 +17,7 @@ function lastCode(cardNo) {
         }
     }
     let rest = sum % 10;
-    console.log(rest, sum);
-    if (cardNo.length % 2) {
-        return 10 - rest;
-    } else {
-        return 10 - rest;
-    }
+    return rest===0?0:10-rest;
 }
 
 let wholeCard = iniCard + lastCode(iniCard);
