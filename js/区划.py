@@ -1,3 +1,5 @@
+#!python
+# -*- coding: utf-8 -*-
 import os
 #os.chdir('D:/360安全浏览器下载')
 lines = open('./区县级行政区划清单V35.csv').readlines()

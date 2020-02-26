@@ -1,4 +1,4 @@
-let iniCard = '62243988000473804';
+let iniCard = '621483213234567';
 
 let binCode = iniCard.substr(0, 6);
 
