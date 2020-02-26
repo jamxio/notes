@@ -1,5 +1,13 @@
 <?php
 header("Content-Type:text/html;charset=utf-8;");
+
+$accessMethod = $_SERVER['REQUEST_METHOD'];
+if ($accessMethod == 'GET') {
+
+    require 'loginForm.php';
+    exit();
+}
+
 if (!isset($_POST['email']) || !isset($_POST['password'])) {
     echo '请填写完整的信息';
     exit();
@@ -7,7 +15,7 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) {
 $email       = $_POST['email'];
 $rawPassword = $_POST['password'];
 require '../redisConnection.php';
-$redis  = new Predis\Client();
+$redis  = new Predis\Client(redisConfig());
 $userID = $redis->hget('email.to.id', $email);
 
 if (!$userID) {
