@@ -80,7 +80,8 @@ enter并没
 
 -[方框？无效]-
 
-==高亮？无效==
+==高亮？无效==  
+==标记==
 
 [^1]: 这里是脚注的内容
 [^2]: 这里是脚注的内容
@@ -92,12 +93,29 @@ enter并没
 照样用三个来闭合
 ~~~
 
+  
+
+::: hljs-right
+
+2342345233432sad
+
+:::
+  
+::: hljs-center
+	sdfdsfsadf
+:::
+  
+下角标~下角标~  
+X~2~  
+X^2^  
+==标记sdfsdf==  
+~~中划线~~  
+++下划线++  
+
 > 表格
 |column1|column2|column3|
 |-|-|-|
 |content1|content2|content3|
-
-
 
 |column1|column2|column3|
 |-|-|-|
